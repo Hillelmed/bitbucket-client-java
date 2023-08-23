@@ -151,7 +151,7 @@ Running integration tests can be done like so (requires Bitbucket instance):
 
     ./mvn test -Plive
 
-Various [properties](https://github.com/Hillelmed/bitbucket-client-java/tree/master/gradle.properties) exist for you to configure
+Various [properties](https://github.com/Hillelmed/bitbucket-client-java/tree/master/pom.xml) exist for you to configure
 
 # Additional Resources
 
