@@ -40,28 +40,9 @@ Can be sourced from maven like so:
 
 We use semantic version for upload and upgrade versions
 
-### Maven repository Configuration:
-
-* Download a sample settings.xml file that has configured profile to pull from the correct maven repository using this link: [settings.xml](https://bintray.com/repo/downloadMavenRepoSettingsFile/downloadSettings?repoPath=%2Fbintray%2Fjcenter)
-
-**OR**
-
-* Add the following repository to the project pom.xml file under project tag:
-```
-    <repositories>
-      <repository>
-        <snapshots>
-          <enabled>false</enabled>
-        </snapshots>
-        <id>jcenter</id>
-        <name>bintray</name>
-        <url>http://jcenter.bintray.com</url>
-      </repository>
-    </repositories>
-```
 ## Documentation
 
-javadocs can be found via [github pages here](https://github.com/Hillelmed/bitbucket-client-java/)
+Can be found via [github pages here](https://github.com/Hillelmed/bitbucket-client-java/)
 
 ## Examples on how to build a _BitbucketClient_
 
@@ -112,9 +93,9 @@ When Passing through `BitbucketClient` :
 
 ## Understanding Error objects
 
-When something pops server-side `bitbucket` will hand us back a list of [Error](https://github.com/Hillelmed/bitbucket-client-java/blob/master/src/main/java/io/github/hmedioni/bitbucket/rest/features/blocking/domain/common/Error.java) objects. we're throwing an exception at runtime we attach this List of `Error` objects
-The throwing object is Bitbucket [BitbucketAppException.java](https://github.com/Hillelmed/bitbucket-client-java/src%2Fmain%2Fjava%2Fio%2Fgithub%2Fhmedioni%2Fbitbucket%2Fclient%2Fexception%2FBitbucketAppException.java)
-to most [domain](https://github.com/Hillelmed/bitbucket-client-java/tree/master/domain/src%2Fmain%2Fjava%2Fio%2Fgithub%2Fhmedioni%2Fbitbucket%2Fclient%2Fdomain) objects. Thus, it is up to the user to check the handed back domain object to see if the attached List is empty, and if not, iterate over the `Error` objects to see if it's something
+When something pops server-side `bitbucket` will hand us back a list of [BitbucketError](https://github.com/Hillelmed/bitbucket-client-java/blob/main/src/main/java/io/github/hmedioni/bitbucket/client/domain/common/BitbucketError.java) objects. we're throwing an exception at runtime we attach this List of `Error` objects
+The throwing object is Bitbucket [BitbucketAppException.java](https://github.com/Hillelmed/bitbucket-client-java/blob/main/src/main/java/io/github/hmedioni/bitbucket/client/exception/BitbucketAppException.java)
+to most [domain](https://github.com/Hillelmed/bitbucket-client-java/tree/main/src/main/java/io/github/hmedioni/bitbucket/client/domain) objects. Thus, it is up to the user to check the handed back domain object to see if the attached List is empty, and if not, iterate over the `Error` objects to see if it's something
 truly warranting an exception. List of `Error` objects itself will always be non-null but in most cases empty (unless something has failed).
 
 An example on how one might proceed:
@@ -132,7 +113,7 @@ An example on how one might proceed:
 
 ## Examples
 
-The [mock](https://github.com/Hillelmed/bitbucket-client-java/tree/master/src/test/java/io/github/hmedioni/bitbucket/rest/features/blocking/features) and [live](https://github.com/Hillelmed/bitbucket-client-java/tree/master/src/test/java/io/github/hmedioni/bitbucket/rest/features/blocking/features) tests provide many examples
+The [mock](https://github.com/Hillelmed/bitbucket-client-java/tree/main/src/test/java/io/github/hmedioni/bitbucket/client/features) and [live](https://github.com/Hillelmed/bitbucket-client-java/tree/main/src/test/java/io/github/hmedioni/bitbucket/client/features) tests provide many examples
 that you can use in your own code. If there are any questions feel free to open an issue and ask.
 
 ## Components
