@@ -1,0 +1,32 @@
+{
+  "title": "ISSUE-123",
+  "description": "Fix for issue 123",
+  "state": "OPEN",
+  "open": true,
+  "closed": false,
+  "fromRef": {
+    "id": "refs/heads/feature-ABC-123",
+    "repository": {
+      "slug": "my-pesonal-repo",
+      "name": null,
+      "project": {
+        "key": "PRJ1"
+      }
+    }
+  },
+  "toRef": {
+    "id": "refs/heads/master",
+    "repository": {
+      "slug": "my-target-repo",
+      "name": null,
+      "project": {
+        "key": "PRJ2"
+      }
+    }
+  },
+  "locked": false,
+  "reviewers": [],
+  "links": {
+    "self": []
+  }
+}
