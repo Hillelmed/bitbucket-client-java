@@ -10,12 +10,12 @@ import org.springframework.lang.*;
 @Data
 public class CreateBranch {
 
-    public String name;
+    private String name;
 
-    public String startPoint;
+    private String startPoint;
 
     // defaults to value of name if null
     @Nullable
-    public String message;
+    private String message;
 
 }

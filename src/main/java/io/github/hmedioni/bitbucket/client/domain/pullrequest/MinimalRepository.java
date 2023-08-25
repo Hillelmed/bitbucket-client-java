@@ -10,12 +10,12 @@ import org.springframework.lang.*;
 @AllArgsConstructor
 public class MinimalRepository {
 
-    public String slug;
+    private String slug;
 
     @Nullable
-    public String name;
+    private String name;
 
-    public ProjectKey project;
+    private ProjectKey project;
 
 
 }

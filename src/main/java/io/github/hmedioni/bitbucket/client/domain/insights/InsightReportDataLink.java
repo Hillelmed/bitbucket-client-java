@@ -9,8 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class InsightReportDataLink {
     @JsonProperty("linktext")
-    public String linkText;
+    private String linkText;
 
-    public String href;
+    private String href;
 
 }

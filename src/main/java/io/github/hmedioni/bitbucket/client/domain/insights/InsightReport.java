@@ -13,23 +13,23 @@ import java.util.*;
 public class InsightReport {
 
 
-    public long createdDate;
+    private long createdDate;
     @Nullable
-    public String details;
+    private String details;
     @Nullable
-    public String key;
+    private String key;
     @Nullable
-    public String link;
+    private String link;
     @Nullable
-    public String logoUrl;
+    private String logoUrl;
     @Nullable
-    public ReportResult result;
+    private ReportResult result;
     @Nullable
-    public String title;
+    private String title;
     @Nullable
-    public String reporter;
+    private String reporter;
     @Nullable
-    public List<InsightReportData> data;
+    private List<InsightReportData> data;
 
     public enum ReportResult {
         PASS,

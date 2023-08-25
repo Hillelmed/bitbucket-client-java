@@ -12,28 +12,28 @@ import org.springframework.lang.*;
 @Data
 public class Author implements LinksHolder {
 
-    public String name;
+    private String name;
 
     @Nullable
-    public String emailAddress;
+    private String emailAddress;
 
     @Nullable
-    public Integer id;
+    private Integer id;
 
     @Nullable
-    public String displayName;
+    private String displayName;
 
     @Nullable
-    public Boolean active;
+    private Boolean active;
 
     @Nullable
-    public String slug;
+    private String slug;
 
     @Nullable
-    public String type;
+    private String type;
 
     @Nullable
-    public Link link;
+    private Link link;
 
     @Nullable
     private Links links;

@@ -26,7 +26,7 @@ public class SystemApiMockTest extends BaseBitbucketMockTest {
 
             final Version version = baseApi.systemApi().version().getBody();
             assertThat(version).isNotNull();
-            assertThat(version.getVersion()).matches(versionRegex);
+            assertThat(version.getId()).matches(versionRegex);
             assertSent(server, "GET", "/rest/api/" + "latest" + "/application-properties");
         } finally {
             server.shutdown();

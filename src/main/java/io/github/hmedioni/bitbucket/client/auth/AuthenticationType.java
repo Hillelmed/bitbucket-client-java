@@ -5,8 +5,8 @@ package io.github.hmedioni.bitbucket.client.auth;
  */
 public enum AuthenticationType {
 
-    Basic("Basic"),
-    Anonymous("");
+    BASIC("Basic"),
+    ANONYMOUS("");
 
     private final String type;
 

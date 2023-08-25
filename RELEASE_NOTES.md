@@ -1,5 +1,6 @@
 ### Versions 1.0
-* suuport bitubcket server 8.1.X
+* Support java 17 with Spring 6.X Or SB 3.X
+* Support bitbucket server 8.X.X
 ### Old versions from cdancy bitbucket
 
 ### Version 3.1.1 (TBA)

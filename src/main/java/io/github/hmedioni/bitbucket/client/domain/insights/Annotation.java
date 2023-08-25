@@ -12,19 +12,19 @@ import org.springframework.lang.*;
 public class Annotation {
 
     @Nullable
-    public String reportKey;
+    private String reportKey;
     @Nullable
-    public String externalId;
-    public int line;
+    private String externalId;
+    private int line;
     @Nullable
-    public String link;
-    public String message;
+    private String link;
+    private String message;
     @Nullable
-    public String path;
+    private String path;
     @Nullable
-    public AnnotationSeverity severity;
+    private AnnotationSeverity severity;
     @Nullable
-    public AnnotationType type;
+    private AnnotationType type;
 
     public Annotation(@Nullable String externalId, int line, @Nullable String link, String message, @Nullable String path, @Nullable AnnotationSeverity severity, @Nullable AnnotationType type) {
         this.reportKey = null;

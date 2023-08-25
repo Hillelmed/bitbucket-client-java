@@ -1,17 +1,18 @@
 package io.github.hmedioni.bitbucket.client.domain.pullrequest;
 
 
+import lombok.*;
 import org.springframework.lang.*;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Parents {
 
-    public String id;
+    private String id;
 
     @Nullable
     public String displayId;
-
-    Parents() {
-    }
 
 }

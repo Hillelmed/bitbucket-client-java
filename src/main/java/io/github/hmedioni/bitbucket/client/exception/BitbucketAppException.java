@@ -13,14 +13,10 @@ import java.util.*;
 public class BitbucketAppException extends RuntimeException {
 
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1L;
     private final List<BitbucketError> errors;
-    private HttpStatusCode httpStatusCode;
+    private final HttpStatusCode httpStatusCode;
 
-    public BitbucketAppException(final String responseBody, final List<BitbucketError> errors) {
-        super(responseBody);
-        this.errors = errors;
-    }
 
 
     public BitbucketAppException(final String responseBody, final List<BitbucketError> errors, HttpStatusCode httpStatusCode) {
@@ -29,9 +25,10 @@ public class BitbucketAppException extends RuntimeException {
         this.httpStatusCode = httpStatusCode;
     }
 
-    public BitbucketAppException(final String responseBody, final List<BitbucketError> errors, final Throwable arg1) {
+    public BitbucketAppException(final String responseBody, final List<BitbucketError> errors, HttpStatusCode httpStatusCode,final Throwable arg1) {
         super(responseBody, arg1);
         this.errors = errors;
+        this.httpStatusCode = httpStatusCode;
     }
 
     public List<BitbucketError> errors() {

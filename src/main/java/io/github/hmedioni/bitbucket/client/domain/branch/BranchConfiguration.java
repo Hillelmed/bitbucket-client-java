@@ -11,8 +11,8 @@ import org.springframework.lang.*;
 public class BranchConfiguration {
 
     @Nullable
-    public String refId;
+    private String refId;
 
-    public boolean useDefault;
+    private boolean useDefault;
 
 }

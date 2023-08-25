@@ -12,14 +12,14 @@ import java.util.*;
 @AllArgsConstructor
 public class Path {
 
-    public List<String> components;
+    private List<String> components;
 
-    public String parent;
+    private String parent;
 
-    public String name;
+    private String name;
 
     @Nullable
-    public String extension;
+    private String extension;
 
     @Override
     public String toString() {

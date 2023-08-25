@@ -1,6 +1,7 @@
 package io.github.hmedioni.bitbucket.client.domain.repository;
 
 
+import com.fasterxml.jackson.annotation.*;
 import io.github.hmedioni.bitbucket.client.domain.common.*;
 import io.github.hmedioni.bitbucket.client.domain.project.*;
 import lombok.*;
@@ -9,38 +10,38 @@ import org.springframework.lang.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class Repository implements LinksHolder {
 
     @Nullable
-    public String slug;
+    private String slug;
 
-    public int id;
-
-    @Nullable
-    public String name;
+    private int id;
 
     @Nullable
-    public String description;
+    private String name;
 
     @Nullable
-    public String scmId;
+    private String description;
 
     @Nullable
-    public String state;
+    private String scmId;
 
     @Nullable
-    public String statusMessage;
-
-    public boolean forkable;
+    private String state;
 
     @Nullable
-    public Repository origin;
+    private String statusMessage;
+
+    private boolean forkable;
 
     @Nullable
-    public Project project;
+    private Repository origin;
 
-    public boolean _public;
+    @Nullable
+    private Project project;
+
+    @JsonProperty("_public")
+    private boolean isPublic;
 
     private Links links;
 

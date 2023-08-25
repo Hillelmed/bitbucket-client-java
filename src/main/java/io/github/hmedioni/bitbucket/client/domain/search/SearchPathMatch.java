@@ -1,14 +1,18 @@
 package io.github.hmedioni.bitbucket.client.domain.search;
 
 
+import lombok.*;
 import org.springframework.lang.*;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SearchPathMatch {
 
-    public boolean match;
+    private boolean match;
 
     @Nullable
-    public String text;
+    private String text;
 
 }

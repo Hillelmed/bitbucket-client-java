@@ -5,6 +5,8 @@ import io.github.hmedioni.bitbucket.client.domain.pullrequest.*;
 import lombok.*;
 import org.springframework.lang.*;
 
+import static io.github.hmedioni.bitbucket.client.BitbucketConstants.REFS_HEADS_MASTER;
+
 
 @Data
 @NoArgsConstructor
@@ -30,18 +32,18 @@ public class Reference {
     public String latestCommit;
 
     public Reference(@Nullable String id, @Nullable MinimalRepository repository) {
-        this.id = id != null ? id : "refs/heads/master";
+        this.id = id != null ? id : REFS_HEADS_MASTER;
         this.repository = repository;
     }
 
     public Reference(@Nullable String id, @Nullable MinimalRepository repository, @Nullable String branchToMerge) {
-        this.id = id != null ? id : "refs/heads/master";
+        this.id = id != null ? id : REFS_HEADS_MASTER;
         this.repository = repository;
         this.displayId = branchToMerge;
     }
 
     public Reference(@Nullable String id, @Nullable MinimalRepository repository, @Nullable String state, @Nullable Boolean tag, @Nullable String displayId, @Nullable String latestCommit) {
-        this.id = id != null ? id : "refs/heads/master";
+        this.id = id != null ? id : REFS_HEADS_MASTER;
         this.repository = repository;
         this.state = state;
         this.tag = tag;

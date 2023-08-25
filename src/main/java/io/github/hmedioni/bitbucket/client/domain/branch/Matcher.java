@@ -8,10 +8,10 @@ import lombok.*;
 @Data
 public class Matcher {
 
-    public String id;
-    public String displayId;
-    public BranchRestrictionType type;
-    public Boolean active;
+    private String id;
+    private String displayId;
+    private BranchRestrictionType type;
+    private Boolean active;
 
     public Matcher(MatcherId matcherId, Boolean active) {
         this.id = matcherId.getId();

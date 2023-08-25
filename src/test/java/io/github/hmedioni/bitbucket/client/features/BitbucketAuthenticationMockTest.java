@@ -15,8 +15,8 @@ public class BitbucketAuthenticationMockTest extends BaseBitbucketMockTest {
     public void testCreateAnonymousAuth() {
         final BitbucketAuthentication auth = BitbucketAuthentication.builder().build();
         assertThat(auth).isNotNull();
-        assertThat(auth.authValue()).isEqualTo("");
-        assertThat(auth.authType()).isEqualTo(AuthenticationType.Anonymous);
+        assertThat(auth.authValue()).isEmpty();
+        assertThat(auth.authType()).isEqualTo(AuthenticationType.ANONYMOUS);
     }
 
     public void testCreateBasicAuthUnencoded() {
@@ -25,7 +25,7 @@ public class BitbucketAuthenticationMockTest extends BaseBitbucketMockTest {
         assertThat(auth.authValue()).isNotNull();
         assertThat(auth.authValue()).isNotEqualTo(unencodedAuth);
         assertThat(auth.authValue()).isEqualTo(encodedAuth);
-        assertThat(auth.authType()).isEqualTo(AuthenticationType.Basic);
+        assertThat(auth.authType()).isEqualTo(AuthenticationType.BASIC);
     }
 
     public void testCreateBasicAuthEncoded() {
@@ -33,6 +33,6 @@ public class BitbucketAuthenticationMockTest extends BaseBitbucketMockTest {
         assertThat(auth).isNotNull();
         assertThat(auth.authValue()).isNotNull();
         assertThat(auth.authValue()).isEqualTo(encodedAuth);
-        assertThat(auth.authType()).isEqualTo(AuthenticationType.Basic);
+        assertThat(auth.authType()).isEqualTo(AuthenticationType.BASIC);
     }
 }

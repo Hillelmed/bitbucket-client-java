@@ -9,40 +9,40 @@ import org.springframework.lang.*;
 @AllArgsConstructor
 @Data
 public class CreatePostWebHook {
-    public boolean branchCreated;
+    private boolean branchCreated;
 
-    public boolean branchDeleted;
-
-    @Nullable
-    public String branchesToIgnore;
+    private boolean branchDeleted;
 
     @Nullable
-    public String committersToIgnore;
+    private String branchesToIgnore;
 
-    public boolean enabled;
+    @Nullable
+    private String committersToIgnore;
 
-    public boolean prCommented;
+    private boolean enabled;
 
-    public boolean prCreated;
+    private boolean prCommented;
 
-    public boolean prDeclined;
+    private boolean prCreated;
 
-    public boolean prMerged;
+    private boolean prDeclined;
 
-    public boolean prReopened;
+    private boolean prMerged;
 
-    public boolean prRescoped;
+    private boolean prReopened;
 
-    public boolean prUpdated;
+    private boolean prRescoped;
 
-    public boolean repoMirrorSynced;
+    private boolean prUpdated;
 
-    public boolean repoPush;
+    private boolean repoMirrorSynced;
 
-    public boolean tagCreated;
+    private boolean repoPush;
 
-    public String title;
+    private boolean tagCreated;
 
-    public String url;
+    private String title;
+
+    private String url;
 
 }

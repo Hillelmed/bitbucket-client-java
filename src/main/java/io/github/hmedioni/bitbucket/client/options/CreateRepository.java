@@ -5,17 +5,18 @@ import lombok.*;
 import org.springframework.lang.*;
 
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateRepository {
 
-    public String name;
+    private String name;
 
     @Nullable
-    public String description;
+    private String description;
 
-    public String scmId;
+    private String scmId;
 
-    public boolean forkable;
+    private boolean forkable;
 
 }

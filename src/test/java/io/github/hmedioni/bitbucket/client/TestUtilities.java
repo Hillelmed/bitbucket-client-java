@@ -51,7 +51,7 @@ public class TestUtilities extends BitbucketUtils {
             assertThat(auth).isNotNull();
             assertThat(api).isNotNull();
 
-            if (auth.authType() == AuthenticationType.Basic) {
+            if (auth.authType() == AuthenticationType.BASIC) {
                 final String username = new String(Base64.getDecoder().decode(auth.authValue())).split(":")[0];
                 final UserPage userPage = api.adminApi().listUsers(username, null, null).getBody();
                 assertThat(userPage).isNotNull();

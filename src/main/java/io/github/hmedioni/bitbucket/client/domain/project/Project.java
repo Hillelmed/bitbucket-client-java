@@ -1,6 +1,7 @@
 package io.github.hmedioni.bitbucket.client.domain.project;
 
 
+import com.fasterxml.jackson.annotation.*;
 import io.github.hmedioni.bitbucket.client.domain.common.*;
 import lombok.*;
 import org.springframework.lang.*;
@@ -9,24 +10,24 @@ import org.springframework.lang.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class Project implements LinksHolder {
 
     @Nullable
-    public String key;
+    private String key;
 
-    public int id;
-
-    @Nullable
-    public String name;
+    private int id;
 
     @Nullable
-    public String description;
-
-    public boolean _public;
+    private String name;
 
     @Nullable
-    public String type;
+    private String description;
+
+    @JsonProperty("_public")
+    private boolean isPublic;
+
+    @Nullable
+    private String type;
 
 
     @Nullable

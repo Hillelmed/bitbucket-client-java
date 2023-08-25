@@ -12,25 +12,25 @@ import java.util.*;
 @AllArgsConstructor
 public class TaskAnchor {
 
-    public Map<String, Object> properties;
+    private Map<String, Object> properties;
 
-    public int id;
+    private int id;
 
-    public int version;
-
-    @Nullable
-    public String text;
-
-    public Author author;
-
-    public long createdDate;
-
-    public long updatedDate;
+    private int version;
 
     @Nullable
-    public PermittedOperations permittedOperations;
+    private String text;
+
+    private Author author;
+
+    private long createdDate;
+
+    private long updatedDate;
 
     @Nullable
-    public String type;
+    private PermittedOperations permittedOperations;
+
+    @Nullable
+    private String type;
 
 }

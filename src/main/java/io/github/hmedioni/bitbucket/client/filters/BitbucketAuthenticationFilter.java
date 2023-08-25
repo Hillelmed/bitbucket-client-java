@@ -17,7 +17,7 @@ public class BitbucketAuthenticationFilter implements ExchangeFilterFunction {
 
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
-        if (creds.authType() == AuthenticationType.Anonymous) {
+        if (creds.authType() == AuthenticationType.ANONYMOUS) {
             return next.exchange(request);
         } else {
             final String authHeader = creds.authType() + " " + creds.authValue();

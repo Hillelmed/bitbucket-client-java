@@ -27,7 +27,7 @@ public class BitbucketProperties {
             return BitbucketUtils.inferAuthentication();
         } else {
             return new BitbucketAuthentication(this.user + ":" + this.password,
-                    AuthenticationType.Basic);
+                    AuthenticationType.BASIC);
         }
     }
 }

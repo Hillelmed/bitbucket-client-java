@@ -1,10 +1,15 @@
 package io.github.hmedioni.bitbucket.client.domain.pullrequest;
 
 
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Properties {
 
-    public long openTaskCount;
+    private long openTaskCount;
 
-    public long resolvedTaskCount;
+    private long resolvedTaskCount;
 
 }

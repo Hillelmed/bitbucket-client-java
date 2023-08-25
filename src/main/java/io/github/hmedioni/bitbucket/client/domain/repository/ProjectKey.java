@@ -10,7 +10,7 @@ import lombok.*;
 public class ProjectKey {
 
     @JsonProperty("key")
-    private String projectKey;
+    private String key;
 
 
 }

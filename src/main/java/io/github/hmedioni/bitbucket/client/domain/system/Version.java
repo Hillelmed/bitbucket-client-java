@@ -1,6 +1,7 @@
 package io.github.hmedioni.bitbucket.client.domain.system;
 
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 @Data
@@ -8,7 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class Version {
 
-    private String version;
+    @JsonProperty("version")
+    private String id;
 
     private String buildNumber;
 

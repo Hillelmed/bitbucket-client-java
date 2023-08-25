@@ -13,11 +13,11 @@ import java.util.*;
 public class BranchModel {
 
     @Nullable
-    public Branch development;
+    private Branch development;
 
     @Nullable
-    public Branch production;
+    private Branch production;
 
-    public List<Type> types;
+    private List<Type> types;
 
 }

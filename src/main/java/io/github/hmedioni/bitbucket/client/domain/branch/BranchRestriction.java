@@ -14,17 +14,17 @@ import java.util.*;
 public class BranchRestriction {
 
     @Nullable
-    public Long id;
+    private Long id;
 
-    public BranchRestrictionEnumType type;
+    private BranchRestrictionEnumType type;
 
-    public Matcher matcher;
+    private Matcher matcher;
 
-    public List<User> users;
+    private List<User> users;
 
-    public List<String> groups;
+    private List<String> groups;
 
     @Nullable
-    public List<AccessKey> accessKeys;
+    private List<AccessKey> accessKeys;
 
 }

@@ -11,26 +11,27 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WebHook {
-    @Nullable
-    public String id;
 
     @Nullable
-    public String name;
-
-    public long createdDate;
-
-    public long updatedDate;
+    private String id;
 
     @Nullable
-    public List<EventType> events;
+    private String name;
+
+    private long createdDate;
+
+    private long updatedDate;
 
     @Nullable
-    public WebHookConfiguration configuration;
+    private List<EventType> events;
 
     @Nullable
-    public String url;
+    private WebHookConfiguration configuration;
 
-    public boolean active;
+    @Nullable
+    private String url;
+
+    private boolean active;
 
     @Getter
     public enum EventType {
@@ -80,7 +81,7 @@ public class WebHook {
         }
 
         @JsonValue
-        public String getApiName() {
+        private String getApiName() {
             return apiName;
         }
 

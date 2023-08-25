@@ -14,16 +14,16 @@ import java.util.*;
 @AllArgsConstructor
 public class Comments implements LinksHolder {
 
-    public long createdDate;
-    public long updatedDate;
-    public List<Comments> comments;
-    public List<Task> tasks;
+    private long createdDate;
+    private long updatedDate;
+    private List<Comments> comments;
+    private List<Task> tasks;
     @Nullable
-    public Anchor anchor;
+    private Anchor anchor;
     @Nullable
-    public Link link;
+    private Link link;
     @Nullable
-    public PermittedOperations permittedOperations;
+    private PermittedOperations permittedOperations;
     private Map<String, Object> properties;
     private int id;
     private int version;

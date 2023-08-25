@@ -9,32 +9,31 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Branch {
 
     @Nullable
-    public String id;
+    private String id;
 
     @Nullable
-    public String displayId;
+    private String displayId;
 
     @Nullable
-    public String type;
+    private String type;
 
     @Nullable
-    public String latestCommit;
+    private String latestCommit;
 
     @Nullable
-    public String latestChangeset;
+    private String latestChangeset;
 
-    public boolean isDefault;
+    private boolean isDefault;
 
     // This map consists of data provided by plugins and so
     // is non-standard in how it's returned and the fields
     // it has. As such we return the raw JsonNode and instead
     // let the caller iterate through the returned plugin data
     // for what they are looking for.
-    public Map<String, Object> metadata;
+    private Map<String, Object> metadata;
 
 
 }

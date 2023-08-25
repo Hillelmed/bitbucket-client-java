@@ -16,7 +16,7 @@ public class SystemApiLiveTest extends BaseBitbucketApiLiveTest {
     public void testGetVersion() {
         final Version version = api().version().getBody();
         assertThat(version).isNotNull();
-        assertThat(version.getVersion().matches(versionRegex)).isTrue();
+        assertThat(version.getId()).matches(versionRegex);
     }
 
     private SystemApi api() {

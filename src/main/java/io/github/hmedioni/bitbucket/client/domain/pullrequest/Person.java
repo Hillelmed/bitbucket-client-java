@@ -1,19 +1,23 @@
 package io.github.hmedioni.bitbucket.client.domain.pullrequest;
 
 
+import lombok.*;
 import org.springframework.lang.*;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
-    public User user;
+    private User user;
 
     @Nullable
-    public String role;
+    private String role;
 
-    public boolean approved;
+    private boolean approved;
 
     @Nullable
-    public String status;
+    private String status;
 
 }

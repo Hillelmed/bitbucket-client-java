@@ -11,6 +11,6 @@ import java.util.*;
 @AllArgsConstructor
 public class SearchRequest {
 
-    public Map<String, Object> request;
+    private Map<String, Object> request;
 
 }

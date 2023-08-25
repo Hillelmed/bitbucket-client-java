@@ -21,7 +21,7 @@ public class BitbucketAuthentication {
      * @param authType  authentication type (e.g. Basic, Bearer, Anonymous).
      */
     public BitbucketAuthentication(final String authValue, final AuthenticationType authType) {
-        if (authType == AuthenticationType.Basic) {
+        if (authType == AuthenticationType.BASIC) {
             this.encodedCred = Base64.getEncoder().encodeToString(authValue.getBytes());
         } else {
             this.encodedCred = "";
@@ -55,7 +55,7 @@ public class BitbucketAuthentication {
          */
         public Builder credentials(final String basicCredentials) {
             this.authValue = Objects.requireNonNull(basicCredentials);
-            this.authType = AuthenticationType.Basic;
+            this.authType = AuthenticationType.BASIC;
             return this;
         }
 
@@ -68,7 +68,7 @@ public class BitbucketAuthentication {
         public BitbucketAuthentication build() {
             return new BitbucketAuthentication(authValue, authType != null
                     ? authType
-                    : AuthenticationType.Anonymous);
+                    : AuthenticationType.ANONYMOUS);
         }
     }
 }

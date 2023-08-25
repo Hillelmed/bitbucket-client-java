@@ -1,28 +1,32 @@
 package io.github.hmedioni.bitbucket.client.domain.search;
 
 
+import lombok.*;
 import org.springframework.lang.*;
 
 import java.util.*;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SearchCode {
 
     @Nullable
-    public String category;
+    private String category;
 
-    public boolean isLastPage;
-
-    @Nullable
-    public Integer count;
+    private boolean isLastPage;
 
     @Nullable
-    public Integer start;
+    private Integer count;
 
     @Nullable
-    public Integer nextStart;
+    private Integer start;
 
     @Nullable
-    public List<SearchCodeResult> values;
+    private Integer nextStart;
+
+    @Nullable
+    private List<SearchCodeResult> values;
 
 }

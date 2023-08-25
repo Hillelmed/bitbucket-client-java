@@ -12,10 +12,10 @@ import java.util.*;
 @NoArgsConstructor
 @Data
 public class CreateBranchModelConfiguration {
-    public BranchConfiguration development;
+    private BranchConfiguration development;
     @Nullable
-    public BranchConfiguration production;
-    public List<Type> types;
+    private BranchConfiguration production;
+    private List<Type> types;
 
     public CreateBranchModelConfiguration(final BranchModelConfiguration configuration) {
         this.development = configuration.getDevelopment();

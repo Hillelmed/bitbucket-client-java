@@ -51,9 +51,9 @@ public class AdminApiMockTest extends BaseBitbucketMockTest {
 
             final UserPage up = baseApi.adminApi().listUsersByGroup(localContext, null, 0, 2).getBody();
             assertThat(up).isNotNull();
-            assertThat(up.getSize() == 2).isTrue();
+            assertThat(up.getSize()).isSameAs(2);
             assert up.getValues().get(0).getSlug() != null;
-            Assertions.assertThat(up.getValues().get(0).getSlug().equals("bob123")).isTrue();
+            Assertions.assertThat(up.getValues().get(0).getSlug()).isEqualToIgnoringCase("bob123");
 
             final Map<String, ?> queryParams = Map.of("context", localContext, limitKeyword, 2, startKeyword, 0);
             assertSent(server, getMethod, restApiPath + "latest"
@@ -97,8 +97,8 @@ public class AdminApiMockTest extends BaseBitbucketMockTest {
         try {
             final UserPage up = api.listUsers("jcitizen", 0, 2).getBody();
             assertThat(up).isNotNull();
-            assertThat(up.getSize() == 1).isTrue();
-            Assertions.assertThat(up.getValues().get(0).getSlug().equals("jcitizen")).isTrue();
+            assertThat(up.getSize()).isSameAs(1);
+            Assertions.assertThat(up.getValues().get(0).getSlug()).isEqualToIgnoringCase("jcitizen");
 
             final Map<String, ?> queryParams = Map.of("filter", "jcitizen", limitKeyword, 2, startKeyword, 0);
             assertSent(server, getMethod, restApiPath + "latest"

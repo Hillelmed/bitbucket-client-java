@@ -11,9 +11,7 @@ import org.springframework.lang.*;
 public class Key {
 
     @Nullable
-    public Long id;
-
-    public String text;
-
-    public String label;
+    private Long id;
+    private String text;
+    private String label;
 }

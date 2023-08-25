@@ -10,20 +10,20 @@ import org.springframework.lang.*;
 @NoArgsConstructor
 public class Anchor {
 
-    public String diffType;
-    public String path;
+    private String diffType;
+    private String path;
     @Nullable
-    public Integer line;
+    private Integer line;
     @Nullable
-    public String lineType;
+    private String lineType;
     @Nullable
-    public String fileType;
+    private String fileType;
     @Nullable
-    public String srcPath;
+    private String srcPath;
     @Nullable
-    public String fromHash;
+    private String fromHash;
     @Nullable
-    public String toHash;
+    private String toHash;
 
     public static Anchor effective(@Nullable Integer line, String path, @Nullable LineType lineType, @Nullable FileType fileType) {
         String strLineType = lineType != null ? lineType.toString() : null;
@@ -49,7 +49,7 @@ public class Anchor {
                                        @Nullable String fromHash, @Nullable String toHash) {
         String strLineType = lineType != null ? lineType.toString() : null;
         String strFileType = fileType != null ? fileType.toString() : null;
-        return new Anchor(DiffType.COMMIT.toString(), path, line, strLineType, strFileType, srcPath, fromHash, toHash);
+        return new Anchor(DiffType.RANGE.toString(), path, line, strLineType, strFileType, srcPath, fromHash, toHash);
     }
 
     public enum DiffType {

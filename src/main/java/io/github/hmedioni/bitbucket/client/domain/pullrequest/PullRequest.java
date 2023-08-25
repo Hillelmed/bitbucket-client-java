@@ -13,44 +13,44 @@ import java.util.*;
 @AllArgsConstructor
 public class PullRequest implements LinksHolder {
 
-    public int id;
+    private int id;
 
-    public int version;
-
-    @Nullable
-    public String title;
+    private int version;
 
     @Nullable
-    public String description;
+    private String title;
 
     @Nullable
-    public String state;
-
-    public boolean open;
-
-    public boolean closed;
-
-    public long createdDate;
-
-    public long updatedDate;
+    private String description;
 
     @Nullable
-    public Reference fromRef;
+    private String state;
+
+    private boolean open;
+
+    private boolean closed;
+
+    private long createdDate;
+
+    private long updatedDate;
 
     @Nullable
-    public Reference toRef;
-
-    public boolean locked;
+    private Reference fromRef;
 
     @Nullable
-    public Person author;
+    private Reference toRef;
 
-    public List<Person> reviewers;
-
-    public List<Person> participants;
+    private boolean locked;
 
     @Nullable
-    public Properties properties;
+    private Person author;
+
+    private List<Person> reviewers;
+
+    private List<Person> participants;
+
+    @Nullable
+    private Properties properties;
     @Nullable
     private Links links;
 

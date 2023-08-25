@@ -15,14 +15,14 @@ import java.util.*;
 public class CreateCondition {
 
     @Nullable
-    public Long id;
+    private Long id;
 
-    public Matcher sourceMatcher;
+    private Matcher sourceMatcher;
 
-    public Matcher targetMatcher;
+    private Matcher targetMatcher;
 
-    public List<User> reviewers;
+    private List<User> reviewers;
 
-    public Long requiredApprovals;
+    private Long requiredApprovals;
 
 }
