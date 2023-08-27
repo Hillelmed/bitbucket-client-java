@@ -17,7 +17,6 @@ public class BitbucketApiClientImpl implements BitbucketApi {
 
     private final BitbucketProperties bitbucketProperties;
     private final WebClient webClient;
-
     private final HttpServiceProxyFactory httpServiceProxyFactory;
     private final Map<Class<?>, Object> singletons;
 
@@ -28,7 +27,7 @@ public class BitbucketApiClientImpl implements BitbucketApi {
         this.singletons = new HashMap<>();
     }
 
-    public synchronized <T> T getSingleton(Class<T> klass) {
+    private synchronized <T> T getSingleton(Class<T> klass) {
         return klass.cast(singletons.computeIfAbsent(klass, httpServiceProxyFactory::createClient));
     }
 
