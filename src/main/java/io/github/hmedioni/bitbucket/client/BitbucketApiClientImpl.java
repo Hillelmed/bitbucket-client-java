@@ -24,7 +24,11 @@ public class BitbucketApiClientImpl implements BitbucketApi {
         this.bitbucketProperties = bitbucketProperties;
         this.webClient = webClient;
         this.httpServiceProxyFactory = buildHttpServiceProxyFactory(bitbucketProperties, webClient, TEMPLATE_AND_VALUES);
-        this.singletons = new HashMap<>();
+        this.singletons = Collections.synchronizedMap(new HashMap<>());
+    }
+
+    private synchronized <T> T getSingleton(Class<T> klass, Object o) {
+        return klass.cast(singletons.computeIfAbsent(klass, aClass -> o));
     }
 
     private synchronized <T> T getSingleton(Class<T> klass) {
@@ -64,7 +68,7 @@ public class BitbucketApiClientImpl implements BitbucketApi {
 
     @Override
     public FileApi fileApi() {
-        return buildHttpServiceProxyFactory(bitbucketProperties, webClient, NONE).createClient(FileApi.class);
+        return getSingleton(FileApi.class, buildHttpServiceProxyFactory(bitbucketProperties, webClient, NONE).createClient(FileApi.class));
     }
 
     @Override
@@ -133,7 +137,8 @@ public class BitbucketApiClientImpl implements BitbucketApi {
     }
 
     @Override
-    public void close() {}
+    public void close() {
+    }
 
     private static HttpServiceProxyFactory buildHttpServiceProxyFactory(BitbucketProperties bitbucketProperties, WebClient webClient,
                                                                         DefaultUriBuilderFactory.EncodingMode encodingMode) {
