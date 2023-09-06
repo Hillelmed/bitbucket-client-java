@@ -1,5 +1,6 @@
 package io.github.hmedioni.bitbucket.client.features.blocking;
 
+import io.github.hmedioni.bitbucket.client.annotations.*;
 import io.github.hmedioni.bitbucket.client.domain.activities.*;
 import io.github.hmedioni.bitbucket.client.domain.commit.*;
 import io.github.hmedioni.bitbucket.client.domain.participants.*;
@@ -21,6 +22,14 @@ public interface PullRequestApi {
                                     @PathVariable("pullRequestId") int pullRequestId);
 
 
+    @Documentation("https://developer.atlassian.com/server/bitbucket/rest/v811/api-group-pull-requests/#api-api-latest-projects-projectkey-repos-repositoryslug-commits-commitid-pull-requests-get")
+    @GetExchange("/{project}/repos/{repo}/commits/{commitId}/pull-requests")
+    ResponseEntity<PullRequestPage> getRepositoryPRContainingCommit(@PathVariable("project") String project,
+                                                                    @PathVariable("repo") String repo,
+                                                                    @PathVariable("commitId") String commitId,
+                                                                    @Nullable @RequestParam(required = false, name = "start") Integer start,
+                                                                    @Nullable @RequestParam(required = false, name = "limit") Integer limit);
+
     @GetExchange("/{project}/repos/{repo}/pull-requests")
     ResponseEntity<PullRequestPage> list(@PathVariable("project") String project,
                                          @PathVariable("repo") String repo,
@@ -38,6 +47,14 @@ public interface PullRequestApi {
     ResponseEntity<PullRequest> create(@PathVariable("project") String project,
                                        @PathVariable("repo") String repo,
                                        @RequestBody CreatePullRequest createPullRequest);
+
+    @Documentation("https://developer.atlassian.com/server/bitbucket/rest/v811/api-group-pull-requests/#api-api-latest-projects-projectkey-repos-repositoryslug-pull-requests-pullrequestid-patch-get")
+    @GetExchange(value = "/{project}/repos/{repo}/pull-requests/{pullRequestId}.diff",accept = MediaType.TEXT_PLAIN_VALUE)
+    ResponseEntity<String> streamRawPullRequestDiff(@PathVariable("project") String project,
+                                                         @PathVariable("repo") String repo,
+                                                         @PathVariable("pullRequestId") int pullRequestId,
+                                                         @RequestParam(value = "contextLines",required = false) String contextLines,
+                                                         @RequestParam(value = "whitespace",required = false) String whitespace);
 
 
     @PutExchange("/{project}/repos/{repo}/pull-requests/{pullRequestId}")

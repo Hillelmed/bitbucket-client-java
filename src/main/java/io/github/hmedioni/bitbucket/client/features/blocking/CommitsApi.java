@@ -1,5 +1,6 @@
 package io.github.hmedioni.bitbucket.client.features.blocking;
 
+import io.github.hmedioni.bitbucket.client.annotations.*;
 import io.github.hmedioni.bitbucket.client.domain.commit.*;
 import io.github.hmedioni.bitbucket.client.domain.pullrequest.*;
 import org.springframework.http.*;
@@ -17,6 +18,17 @@ public interface CommitsApi {
                                @PathVariable("repo") String repo,
                                @PathVariable("commitId") String commitId,
                                @Nullable @RequestParam(required = false, name = "path") String path);
+
+    @Documentation("https://developer.atlassian.com/server/bitbucket/rest/v811/api-group-repository/#api-api-latest-projects-projectkey-repos-repositoryslug-commits-commitid-diff-get")
+    @GetExchange(value = "/{project}/repos/{repo}/commits/{commitId}/diff", accept = MediaType.TEXT_PLAIN_VALUE)
+    ResponseEntity<String> getDiff(@PathVariable("project") String project,
+                                   @PathVariable("repo") String repo,
+                                   @PathVariable("commitId") String commitId,
+                                   @Nullable @RequestParam(required = false, name = "contextLines") Integer contextLines,
+                                   @Nullable @RequestParam(required = false, name = "srcPath") String srcPath,
+                                   @Nullable @RequestParam(required = false, name = "autoSrcPath") Boolean autoSrcPath,
+                                   @Nullable @RequestParam(required = false, name = "whitespace") String whitespace,
+                                   @Nullable @RequestParam(required = false, name = "since") String since);
 
 
     @GetExchange("/{project}/repos/{repo}/commits/{commitId}/changes")

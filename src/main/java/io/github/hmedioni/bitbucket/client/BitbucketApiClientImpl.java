@@ -10,8 +10,7 @@ import org.springframework.web.util.*;
 
 import java.util.*;
 
-import static org.springframework.web.util.DefaultUriBuilderFactory.EncodingMode.NONE;
-import static org.springframework.web.util.DefaultUriBuilderFactory.EncodingMode.TEMPLATE_AND_VALUES;
+import static org.springframework.web.util.DefaultUriBuilderFactory.EncodingMode.*;
 
 public class BitbucketApiClientImpl implements BitbucketApi {
 

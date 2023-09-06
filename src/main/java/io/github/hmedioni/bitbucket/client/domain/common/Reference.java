@@ -5,7 +5,7 @@ import io.github.hmedioni.bitbucket.client.domain.pullrequest.*;
 import lombok.*;
 import org.springframework.lang.*;
 
-import static io.github.hmedioni.bitbucket.client.BitbucketConstants.REFS_HEADS_MASTER;
+import static io.github.hmedioni.bitbucket.client.BitbucketConstants.*;
 
 
 @Data

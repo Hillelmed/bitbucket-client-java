@@ -1,3 +1,7 @@
+### Versions 1.1.0
+* Support new EP
+* Adding testing
+
 ### Versions 1.0
 * Support java 17 with Spring 6.X Or SB 3.X
 * Support bitbucket server 8.X.X

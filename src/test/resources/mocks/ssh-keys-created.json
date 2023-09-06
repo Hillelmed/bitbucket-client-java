@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "createdDate": "<string>",
+  "bitLength": 2154,
+  "algorithmType": "<string>",
+  "lastAuthenticated": "1630041546434",
+  "label": "me@127.0.0.1",
+  "text": "ssh-rsa AAAAB3... me@127.0.0.1",
+  "expiryDays": 30
+}
