@@ -17,6 +17,7 @@ import org.springframework.http.*;
 import org.testng.annotations.*;
 
 import java.io.*;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -125,6 +126,23 @@ public class PullRequestApiLiveTest extends BaseBitbucketApiLiveTest {
         assertThat(pr.getValues().size() == 1).isTrue();
         assertThat(pr.getTotalCount() > 0).isTrue();
     }
+
+    @Test(dependsOnMethods = "testGetPullRequestCommits")
+    public void testGetRepositoryPRContainingCommit() {
+        final CommitPage pr = api().commits(project, repo, prId, true, 1, null).getBody();
+        final PullRequestPage page = api().getRepositoryPRContainingCommit(project, repo,pr.getValues().get(0).getId(),0,10).getBody();
+        assertThat(page).isNotNull();
+        assertThat(page.getValues().size()).isEqualTo(1);
+    }
+
+    @Test(dependsOnMethods = "testGetRepositoryPRContainingCommit")
+    public void testStreamRawPullRequestDiff() {
+        final ResponseEntity<String> streamRawPullRequestDiff = api().streamRawPullRequestDiff(project, repo,prId,null,null);
+        assertThat(streamRawPullRequestDiff).isNotNull();
+        assertThat(Objects.requireNonNull(streamRawPullRequestDiff.getBody())).isNotEmpty();
+    }
+
+
 
     @Test(dependsOnMethods = {"testGetPullRequestCommits", "testAddExistingParticipant"})
     public void testDeclinePullRequest() {

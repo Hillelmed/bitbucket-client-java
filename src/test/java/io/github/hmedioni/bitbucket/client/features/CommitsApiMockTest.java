@@ -51,6 +51,23 @@ public class CommitsApiMockTest extends BaseBitbucketMockTest {
             server.shutdown();
         }
     }
+    public void testGetDiff() throws Exception {
+        final MockWebServer server = mockWebServer();
+
+        server.enqueue(new MockResponse().setBody(payloadFromResource("/mocks/commitdiff.text")).setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE)
+                .setResponseCode(200));
+        try (final BitbucketApi baseApi = api("http://localhost:" + server.getPort())) {
+
+            final ResponseEntity<String> responseEntity = baseApi.commitsApi().getDiff(projectKey, repoKey, commitHash, null,null,null,null,null);
+            assertThat(responseEntity).isNotNull();
+            assertThat(responseEntity.getBody()).isNotEmpty();
+
+            assertSent(server, getMethod, restBasePath + "latest"
+                    + "/projects/" + projectKey + "/repos/" + repoKey + "/commits/" + commitHash + "/diff");
+        } finally {
+            server.shutdown();
+        }
+    }
 
     public void testGetCommitNonExistent() throws Exception {
         final MockWebServer server = mockWebServer();

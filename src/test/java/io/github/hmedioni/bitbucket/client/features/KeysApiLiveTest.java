@@ -19,6 +19,7 @@ public class KeysApiLiveTest extends BaseBitbucketApiLiveTest {
                     + "5OGxjbTSFFtp0poqMcPuogocMR7QhjY9JGG3fcnJ7nYDCGRHD4zfG5Af/tHwvJ2ew0WTYoemvlfZIG/jZ7fsuOQSyUpJoxGAlb6"
                     + "/QpnfSmJjxCx0VEoppWDn8CO3VhOgzVhWx0ecne+ZcUy3Ktt3HBQN0hosRfqkVSRTvkpK4RD8TaW5PrVDe1r2Q5ab37TO+Ls4xx"
                     + "t16QlPubNxWeH3dHVzXdmFAItuH0DuyLyMoW1oxZ6+NrKu+pAAERxM303gejFzKDqXid5m1EOTvk4xhyqYN user@host";
+    private final String label = "me@127.0.0.1";
     private GeneratedTestContents generatedTestContents;
     private String projectKey;
     private String repoKey;
@@ -34,6 +35,20 @@ public class KeysApiLiveTest extends BaseBitbucketApiLiveTest {
     }
 
     @Test
+    public void testAddSSHKeyForUser() {
+        final Key key = Key.create(testPubKey, label, testPubKey.length(), 20, "RSA");
+        final ResponseEntity<Key> responseKey = api().createSSHKeyForUser(bitbucketProperties.getUser(), key);
+        assertThat(responseKey.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(responseKey.getBody().getId()).isNotNull();
+    }
+
+    @Test(dependsOnMethods = "testAddSSHKeyForUser")
+    public void testDeleteAllSSHKeysForUser() {
+        final ResponseEntity<Void> responseKey = api().deleteAllSSHKeysForUser(bitbucketProperties.getUser());
+        assertThat(responseKey.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test(dependsOnMethods = "testDeleteAllSSHKeysForUser")
     public void testAddForRepository() {
         final AccessKey newKey = api().createForRepo(projectKey, repoKey,
                 new CreateAccessKey(new CreateKey(testPubKey), AccessKey.PermissionType.REPO_READ)).getBody();
@@ -43,6 +58,18 @@ public class KeysApiLiveTest extends BaseBitbucketApiLiveTest {
 
         this.repoKeyId = newKey.getKey().getId();
     }
+
+
+    @Test
+    public void testErrorExpireDaysMustBePositiveAddKeyForUser() {
+        final Key key = Key.create(testPubKey, label, testPubKey.length(), -1, "RSA");
+        try {
+            api().createSSHKeyForUser(bitbucketProperties.getUser(), key);
+        } catch (BitbucketAppException e) {
+            assertThat(e.errors().size()).isPositive();
+        }
+    }
+
 
     @Test(dependsOnMethods = "testAddForRepository")
     public void testGetForRepository() {
@@ -85,7 +112,7 @@ public class KeysApiLiveTest extends BaseBitbucketApiLiveTest {
 
     }
 
-    @Test
+    @Test(dependsOnMethods = "testDeleteAllSSHKeysForUser")
     public void testAddForProject() {
         final AccessKey newKey = api().createForProject(projectKey,
                 new CreateAccessKey(new CreateKey(testPubKey), AccessKey.PermissionType.PROJECT_READ)).getBody();

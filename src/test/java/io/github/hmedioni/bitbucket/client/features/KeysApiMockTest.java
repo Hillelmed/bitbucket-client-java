@@ -21,6 +21,13 @@ import static org.assertj.core.api.Assertions.*;
 @Test(groups = "unit", testName = "KeysApiMockTest")
 public class KeysApiMockTest extends BaseBitbucketMockTest {
 
+    private final String testPubKey =
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCy9f0/nwkXESzkL4v4ftZ24VJYvkQ/Nt6vsLab3iSWtJXqrRsBythCcbAU6W9"
+                    + "5OGxjbTSFFtp0poqMcPuogocMR7QhjY9JGG3fcnJ7nYDCGRHD4zfG5Af/tHwvJ2ew0WTYoemvlfZIG/jZ7fsuOQSyUpJoxGAlb6"
+                    + "/QpnfSmJjxCx0VEoppWDn8CO3VhOgzVhWx0ecne+ZcUy3Ktt3HBQN0hosRfqkVSRTvkpK4RD8TaW5PrVDe1r2Q5ab37TO+Ls4xx"
+                    + "t16QlPubNxWeH3dHVzXdmFAItuH0DuyLyMoW1oxZ6+NrKu+pAAERxM303gejFzKDqXid5m1EOTvk4xhyqYN user@host";
+    private final String label = "me@127.0.0.1";
+
     private final String projectKey = "MY-PROJECT";
     private final String repoKey = "my-repo";
     private final int keyId = 1;
@@ -82,6 +89,46 @@ public class KeysApiMockTest extends BaseBitbucketMockTest {
             server.shutdown();
         }
     }
+
+    public void testCreateSSHForUser() throws Exception {
+        final MockWebServer server = mockWebServer();
+
+        server.enqueue(new MockResponse().setBody(payloadFromResource("/mocks/ssh-keys-created.json")).setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .setResponseCode(201));
+        final BitbucketApi baseApi = api("http://localhost:" + server.getPort());
+        final KeysApi api = baseApi.keysApi();
+        try {
+            final Key key = Key.create(testPubKey, label, testPubKey.length(), 20, "RSA");
+            final ResponseEntity<Key> responseKey = api.createSSHKeyForUser(bitbucketProperties.getUser(), key);
+            assertThat(responseKey.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+            assertThat(responseKey.getBody().getId()).isNotNull();
+            final Map<String, ?> queryParams = Map.of("user", bitbucketProperties.getUser());
+            assertSent(server, postMethod, "/rest/ssh/latest/keys", queryParams);
+        } finally {
+            baseApi.close();
+            server.shutdown();
+        }
+    }
+
+    public void testDeleteAllKeysSSHForUser() throws Exception {
+        final MockWebServer server = mockWebServer();
+
+        server.enqueue(new MockResponse().setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .setResponseCode(204));
+        final BitbucketApi baseApi = api("http://localhost:" + server.getPort());
+        final KeysApi api = baseApi.keysApi();
+        try {
+            final ResponseEntity<Void> responseKey = api.deleteAllSSHKeysForUser(bitbucketProperties.getUser());
+            assertThat(responseKey.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+            final Map<String, ?> queryParams = Map.of("user", bitbucketProperties.getUser());
+            assertSent(server, deleteMethod, "/rest/ssh/latest/keys", queryParams);
+        } finally {
+            baseApi.close();
+            server.shutdown();
+        }
+    }
+
+
 
     public void testCreateForRepo() throws Exception {
         final MockWebServer server = mockWebServer();

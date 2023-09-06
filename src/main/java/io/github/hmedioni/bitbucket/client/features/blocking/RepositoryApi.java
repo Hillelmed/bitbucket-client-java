@@ -1,6 +1,7 @@
 package io.github.hmedioni.bitbucket.client.features.blocking;
 
 
+import io.github.hmedioni.bitbucket.client.annotations.*;
 import io.github.hmedioni.bitbucket.client.domain.labels.*;
 import io.github.hmedioni.bitbucket.client.domain.repository.*;
 import io.github.hmedioni.bitbucket.client.options.*;
@@ -104,4 +105,11 @@ public interface RepositoryApi {
     @GetExchange("projects/{project}/repos/{repo}/labels")
     ResponseEntity<LabelsPage> getLabels(@PathVariable("project") String project,
                                          @PathVariable("repo") String repo);
+
+    @Documentation("https://developer.atlassian.com/server/bitbucket/rest/v811/api-group-repository/#api-api-latest-projects-projectkey-repos-repositoryslug-attachments-attachmentid-metadata-put")
+    @PutExchange("projects/{project}/repos/{repo}/attachments/{attachmentId}/metadata")
+    ResponseEntity<String> saveAttachmentMetadata(@PathVariable("project") String project,
+                                                  @PathVariable("repo") String repo,
+                                                  @PathVariable("attachmentId") String attachmentId,
+                                                  @RequestBody String content);
 }

@@ -6,6 +6,7 @@ import io.github.hmedioni.bitbucket.client.domain.pullrequest.*;
 import io.github.hmedioni.bitbucket.client.exception.*;
 import io.github.hmedioni.bitbucket.client.features.blocking.*;
 import org.assertj.core.api.*;
+import org.springframework.http.*;
 import org.testng.annotations.*;
 
 import static org.assertj.core.api.Assertions.*;
@@ -63,6 +64,13 @@ public class CommitsApiLiveTest extends BaseBitbucketApiLiveTest {
         final Commit commit = api().get(projectKey, repoKey, commitHash, null).getBody();
         assertThat(commit).isNotNull();
         assertThat(commit.getId().equals(commitHash)).isTrue();
+    }
+
+    @Test(dependsOnMethods = "testGetCommit")
+    public void testGetDiff() {
+        final ResponseEntity<String> responseEntity = api().getDiff(projectKey, repoKey, commitHash, null,null,null,null,null);
+        assertThat(responseEntity).isNotNull();
+        assertThat(responseEntity.getBody()).isNotEmpty();
     }
 
     @Test
