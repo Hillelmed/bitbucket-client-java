@@ -21,7 +21,8 @@ public class ProjectPermissions {
     public enum PermissionsType {
         PROJECT_ADMIN,
         PROJECT_WRITE,
-        PROJECT_READ
+        PROJECT_READ,
+        REPO_CREATE
     }
 
 }
