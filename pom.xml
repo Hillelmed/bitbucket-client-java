@@ -6,7 +6,7 @@
 
     <groupId>io.github.hmedioni</groupId>
     <artifactId>bitbucket-client-java</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <description>This project is an upgrade to java 17 from old project that support only java 11
         https://github.com/Hillelmed/bitbucket-client-java
     </description>
