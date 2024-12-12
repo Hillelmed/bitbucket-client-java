@@ -1,14 +1,14 @@
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.hmedioni/bitbucket-client-java/badge.png)](https://maven-badges.herokuapp.com/maven-central/io.github.hmedioni/bitbucket-rest)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.hillelmed/bitbucket-client/badge.png)](https://maven-badges.herokuapp.com/maven-central/io.github.hillelmed/bitbucket-rest)
 [![Stack Overflow](https://img.shields.io/badge/stack%20overflow-bitbucket&#8211;rest-4183C4.svg)](https://stackoverflow.com/questions/tagged/bitbucket+rest)
 
-# bitbucket-client-java
+# bitbucket-client
 ![alt tag](https://wac-cdn.atlassian.com/dam/jcr:e2a6f06f-b3d5-4002-aed3-73539c56a2eb/bitbucket_rgb_blue.png?cdnVersion=cm)
 
 java client, based on spring http interface, to interact with Bitbucket's REST API.
 
 ## On Spring 6.X, apis and endpoints
-Being built on top of `Spring-webflux 6.X for use http interface client https://www.baeldung.com/spring-6-http-interface` means things are broken up into [Apis](https://github.com/Hillelmed/bitbucket-client-java/tree/master/src/main/java/io/github/hmedioni/bitbucket/rest/features/blocking/features).
+Being built on top of `Spring-webflux 6.X for use http interface client https://www.baeldung.com/spring-6-http-interface` means things are broken up into [Apis](https://github.com/Hillelmed/bitbucket-client/tree/master/src/main/java/io/github/hmedioni/bitbucket/rest/features/blocking/features).
 `Apis` are just Interfaces that are analagous to a resource provided by the server-side program (e.g. /api/branches, /api/pullrequest, /api/commits, etc..).
 The methods within these Interfaces are analagous to an endpoint provided by these resources (e.g. GET /api/branches/my-branch, GET /api/pullrequest/123, DELETE /api/commits/456, etc..).
 The user only needs to be concerned with which `Api` they need and then calling its various methods. These methods, much like any java library, return domain objects
@@ -32,8 +32,8 @@ contributors to take up the work.
 Can be sourced from maven like so:
 
     <dependency>
-      <groupId>io.github.hmedioni</groupId>
-      <artifactId>bitbucket-client-java</artifactId>
+      <groupId>io.github.hillelmed</groupId>
+      <artifactId>bitbucket-client</artifactId>
       <version>X.Y.Z</version>
       <classifier>sources|tests|javadoc|all</classifier> (Optional)
     </dependency>
@@ -42,7 +42,7 @@ We use semantic version for upload and upgrade versions
 
 ## Documentation
 
-Can be found via [github pages here](https://github.com/Hillelmed/bitbucket-client-java/)
+Can be found via [github pages here](https://github.com/Hillelmed/bitbucket-client/)
 
 ## Examples on how to build a _BitbucketClient_
 
@@ -93,9 +93,9 @@ When Passing through `BitbucketClient` :
 
 ## Understanding Error objects
 
-When something pops server-side `bitbucket` will hand us back a list of [BitbucketError](https://github.com/Hillelmed/bitbucket-client-java/blob/main/src/main/java/io/github/hmedioni/bitbucket/client/domain/common/BitbucketError.java) objects. we're throwing an exception at runtime we attach this List of `Error` objects
-The throwing object is Bitbucket [BitbucketAppException.java](https://github.com/Hillelmed/bitbucket-client-java/blob/main/src/main/java/io/github/hmedioni/bitbucket/client/exception/BitbucketAppException.java)
-to most [domain](https://github.com/Hillelmed/bitbucket-client-java/tree/main/src/main/java/io/github/hmedioni/bitbucket/client/domain) objects. Thus, it is up to the user to check the handed back domain object to see if the attached List is empty, and if not, iterate over the `Error` objects to see if it's something
+When something pops server-side `bitbucket` will hand us back a list of [BitbucketError](https://github.com/Hillelmed/bitbucket-client/blob/main/src/main/java/io/github/hmedioni/bitbucket/client/domain/common/BitbucketError.java) objects. we're throwing an exception at runtime we attach this List of `Error` objects
+The throwing object is Bitbucket [BitbucketAppException.java](https://github.com/Hillelmed/bitbucket-client/blob/main/src/main/java/io/github/hmedioni/bitbucket/client/exception/BitbucketAppException.java)
+to most [domain](https://github.com/Hillelmed/bitbucket-client/tree/main/src/main/java/io/github/hmedioni/bitbucket/client/domain) objects. Thus, it is up to the user to check the handed back domain object to see if the attached List is empty, and if not, iterate over the `Error` objects to see if it's something
 truly warranting an exception. List of `Error` objects itself will always be non-null but in most cases empty (unless something has failed).
 
 An example on how one might proceed:
@@ -113,7 +113,7 @@ An example on how one might proceed:
 
 ## Examples
 
-The [mock](https://github.com/Hillelmed/bitbucket-client-java/tree/main/src/test/java/io/github/hmedioni/bitbucket/client/features) and [live](https://github.com/Hillelmed/bitbucket-client-java/tree/main/src/test/java/io/github/hmedioni/bitbucket/client/features) tests provide many examples
+The [mock](https://github.com/Hillelmed/bitbucket-client/tree/main/src/test/java/io/github/hmedioni/bitbucket/client/features) and [live](https://github.com/Hillelmed/bitbucket-client/tree/main/src/test/java/io/github/hmedioni/bitbucket/client/features) tests provide many examples
 that you can use in your own code. If there are any questions feel free to open an issue and ask.
 
 ## Components
@@ -132,7 +132,7 @@ Running integration tests can be done like so (requires Bitbucket instance):
 
     ./mvn test -Plive
 
-Various [properties](https://github.com/Hillelmed/bitbucket-client-java/tree/master/pom.xml) exist for you to configure
+Various [properties](https://github.com/Hillelmed/bitbucket-client/tree/master/pom.xml) exist for you to configure
 
 # Additional Resources
 
