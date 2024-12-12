@@ -19,7 +19,6 @@
     </properties>
 
 
-
     <scm>
         <connection>scm:git:git://github.com/hillelmed/bitbucket-client.git</connection>
         <developerConnection>scm:git:git@github.com:Hillelmed/bitbucket-client.git</developerConnection>
@@ -132,17 +131,49 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>net.ju-n.maven.plugins</groupId>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.6.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>net.nicoulaj.maven.plugins</groupId>
                 <artifactId>checksum-maven-plugin</artifactId>
-                <version>1.4</version>
+                <version>1.7</version> <!-- Check for the latest version -->
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
                             <goal>artifacts</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <fileSets>
+                        <!-- Specify the directory containing the files -->
+                        <fileSet>
+                            <directory>${project.build.directory}</directory>
+                            <includes>
+                                <!-- Include specific files or patterns -->
+                                <include>*.jar</include>
+                                <include>*.pom</include>
+                                <include>*.xml</include>
+                                <include>*.zip</include>
+                            </includes>
+                            <excludes>
+                                <!-- Exclude unnecessary files -->
+                                <exclude>**/*.md5</exclude>
+                                <exclude>**/*.sha1</exclude>
+                            </excludes>
+                        </fileSet>
+                    </fileSets>
+                </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -181,6 +212,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -203,6 +235,7 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
