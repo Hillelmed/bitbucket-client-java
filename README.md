@@ -1,12 +1,12 @@
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.hillelmed/bitbucket-client/badge.png)](https://maven-badges.herokuapp.com/maven-central/io.github.hillelmed/bitbucket-rest)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.hillelmed/bitbucket-client/badge.png)](https://maven-badges.herokuapp.com/maven-central/io.github.hillelmed/bitbucket-client)
 [![Stack Overflow](https://img.shields.io/badge/stack%20overflow-bitbucket&#8211;rest-4183C4.svg)](https://stackoverflow.com/questions/tagged/bitbucket+rest)
 
 # bitbucket-client
 ![alt tag](https://wac-cdn.atlassian.com/dam/jcr:e2a6f06f-b3d5-4002-aed3-73539c56a2eb/bitbucket_rgb_blue.png?cdnVersion=cm)
 
 java client, based on spring http interface, to interact with Bitbucket's REST API.
-
+*Note:* Support java 21 with spring 6.2.x
 ## On Spring 6.X, apis and endpoints
 Being built on top of `Spring-webflux 6.X for use http interface client https://www.baeldung.com/spring-6-http-interface` means things are broken up into [Apis](https://github.com/Hillelmed/bitbucket-client/tree/master/src/main/java/io/github/hmedioni/bitbucket/rest/features/blocking/features).
 `Apis` are just Interfaces that are analagous to a resource provided by the server-side program (e.g. /api/branches, /api/pullrequest, /api/commits, etc..).
